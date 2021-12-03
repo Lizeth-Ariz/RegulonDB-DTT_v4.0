@@ -1,2 +1,0 @@
-# DNAFeaturesGL
-Created with CodeSandbox
