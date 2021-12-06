@@ -1,24 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {HashRouter} from 'react-router-dom'
-import { ApolloProvider } from '@apollo/react-hooks';
-import Client from './webServices/apollo_client';
-import "./styleSheet_regulonDB.css"
 
-const main = document.getElementById('root');
-const renderOrHydrate = main.innerHTML.trim().length ? 'hydrate' : 'render';
-
-ReactDOM[renderOrHydrate](
-    <React.StrictMode>
-        <HashRouter>
-            <ApolloProvider client={Client}>
-                <App />
-            </ApolloProvider>
-        </HashRouter>
-    </React.StrictMode>,
-    main
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

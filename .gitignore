@@ -9,7 +9,7 @@
 .LSOverride
 node_modules
 .env
-
+.old
 # Icon must end with two \r
 Icon
 
