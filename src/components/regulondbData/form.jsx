@@ -6,30 +6,36 @@
 	
 ## Description  
 	
-[Description Details]
+FormRegulondbData is a user interface where the user
+selects the options he prefers in the form to make 
+the graph of genetic elements.
 
 ## Category   
 	
-[Visual, Structural]  
+[Visual]  
 
 ## Live demo 
 	
-[code to iframe CodeSandbox]
+[-]
 
 
 ## Installation 
 
-[example: npm install --save react-awesome-button]
+[-]
 
 ## Usage 
 	
-[example: <protvista-tooltip>  </protvista-tooltip> ]
+-import Form from './components/regulondbData/form';
+-<Form></Form>
 
 ## Props 
 
-| Attribute | Type | Default | Description |
-| --------- | ---- | ------- | ----------- |
-|           |      |         |             |
+|    Attribute    |   Type    | Default |                          Description                       |
+| --------------- | --------- | ------- |       ---------------------------------------------        |
+|    onGo()       |  function |         | This funtion allows you to submit the Form.                |
+|    onReset()    |  function |         | Resets the form elements to their default values.          |             
+|    minbp = 1    |  -------- |         | Allows the minimum entry of positions in a specific range. |   
+| maxbp = 4639676 |  -------- |         | Allows the maximum entry of positions in a specific range. |   
 
 
 ## Exception
@@ -47,42 +53,39 @@ RegulonDB Team:
 [full developer name]
 
 
-
-
 # Component (technical guide)
 
 ## Component Type 
 
-[stateful, stateless, pure, HOC, Hook]
+[HOC]
 
 ## Dependencies
 
-[Dependencies details]
+import { useState, useEffect } from "react";
 
 ## States
 	
-| Property | Value | Desctiption |
-| -------- | ----- | ----------- |
-|          |       |             |
-	
+|  Property   | Value |                      Description                      |
+| ----------- | ----- |       ------------------------------------------      |
+| elementData | Array | Genetic elements to be graphic in the specified range |	
 
 # Functions description
 
-Return:__  
+Return: 
 ​__[Type]:__ [Name]
 ​[Description (if necessary)]
-## [function name]
+## [setValues()]
 
 __Description:__  
 
-[Description of the function]
+[Returns form data.]
 
 
 __Usage:__
 
-```javascript
-&function(Parameters, if any);
-```
+onClick={() => {
+          onGo(setValues());
+        }}
 
 __Scope: __
 

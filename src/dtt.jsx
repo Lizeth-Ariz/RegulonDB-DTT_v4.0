@@ -2,6 +2,7 @@ import React from 'react'
 import Title from './components/cover/title'
 import { Tabs } from './components/tab/tabs';
 import Form from './components/regulondbData/form';
+import {UserData} from "./components/userData/userData"
 import "./styleSheet_regulonDB.css"
 
 
@@ -20,7 +21,7 @@ const tabsInfo = [
     <div id="02">
       <article>
         <br />
-        
+        <UserData></UserData> 
       </article>
     </div>
   ];
