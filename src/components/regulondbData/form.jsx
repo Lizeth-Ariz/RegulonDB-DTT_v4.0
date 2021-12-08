@@ -1,8 +1,8 @@
 /*
 
-# Component (user guide)
+# Component (deployment use)
 
-# [Component name]
+# Form (regulonDB dtt)
 	
 ## Description  
 	
@@ -18,24 +18,25 @@ the graph of genetic elements.
 	
 [-]
 
-
 ## Installation 
 
 [-]
 
 ## Usage 
-	
--import Form from './components/regulondbData/form';
--<Form></Form>
 
+'''
+import Form from './components/regulondbData/form';
+//on implement ReactElement
+<Form ></Form>
+'''
 ## Props 
 
 |    Attribute    |   Type    | Default |                          Description                       |
 | --------------- | --------- | ------- |       ---------------------------------------------        |
 |    onGo()       |  function |         | This funtion allows you to submit the Form.                |
 |    onReset()    |  function |         | Resets the form elements to their default values.          |             
-|    minbp = 1    |  -------- |         | Allows the minimum entry of positions in a specific range. |   
-| maxbp = 4639676 |  -------- |         | Allows the maximum entry of positions in a specific range. |   
+|    minbp = 1    |  Integer  |         | Allows the minimum entry of positions in a specific range. |   
+| maxbp = 4639676 |  Integer  |         | Allows the maximum entry of positions in a specific range. |   
 
 
 ## Exception
@@ -50,18 +51,27 @@ MIT License
 ## Author 
 	
 RegulonDB Team: 
-[full developer name]
+[
+  Liz <correo@com>
+  Gabriel Alarcon Carranza  <galarcon@ccg.unam.mx>
+]
 
 
-# Component (technical guide)
+# Component (development use)
 
 ## Component Type 
 
-[HOC]
+[hook]
 
 ## Dependencies
 
-import { useState, useEffect } from "react";
+_[react]_ useState
+[description]
+_documentation_
+[React](https://es.reactjs.org/)
+
+​__[Type]:__ [Name]
+[Description]
 
 ## States
 	
@@ -71,37 +81,37 @@ import { useState, useEffect } from "react";
 
 # Functions description
 
-Return: 
-​__[Type]:__ [Name]
-​[Description (if necessary)]
-## [setValues()]
+## function_name
 
 __Description:__  
-
-[Returns form data.]
-
+[this function sends the console a warning that the button does not have a designated action]
 
 __Usage:__
-
-onClick={() => {
-          onGo(setValues());
-        }}
+'''
+  <button
+    onClick={() => {
+      onGo(setValues());
+    }}
+  >
+    Go
+  </button>
+'''
 
 __Scope: __
+ Local
 
-[Scope details]
+__Input Parameter:__ 
+​__[Type]:__ [Name]
+[Description]
 
-__Input Parameter:__  
-​__[Name]:__ [Description]
-__[Name]:__ [Description]
-
-
-__
+__Return:__
+​__[Type]:__ [Name]
+​[Description (if necessary)]
 
 
 */
 
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const elementData = [
   { name: "gene" },
@@ -151,14 +161,12 @@ export default function Form({
     return response;
   }
 
-  const [elements, setElements] = useState([]);
-  //const [checked, setChecked] = useState(true);
+  const [elements, setElements] = useState(elementData);
 
-  useEffect(() => {
-    setElements(elementData);
-  }, []);
+
 
   const handleChange = (e) => {
+    //console.log(typeof(e))
     const { name, checked } = e.target;
     if (name === "checkAll") {
       let tempElement = elements.map((element) => {
@@ -174,9 +182,11 @@ export default function Form({
   };
 
   const resetInput = (e) => {
+    
     document.getElementById("posL").value = "";
     document.getElementById("posR").value = "";
     document.getElementById("both").checked = true;
+    setElements(elementData);
   };
 
   return (
@@ -256,7 +266,8 @@ export default function Form({
         className="accent"
         style={{ marginRight: "2%", marginLeft: "2%" }}
         onClick={() => {
-          onReset(resetInput());
+          onReset(true)
+          resetInput()
         }}
       >
         Reset
