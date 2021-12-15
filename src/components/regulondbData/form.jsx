@@ -6,9 +6,7 @@
 	
 ## Description  
 	
-FormRegulondbData is a user interface where the user
-selects the options he prefers in the form to make 
-the graph of genetic elements.
+FormRegulondbData is a user interface where the user selects the options he prefers in the form to make the graph of genetic elements.
 
 ## Category   
 	
@@ -52,7 +50,7 @@ MIT License
 	
 RegulonDB Team: 
 [
-  Liz <correo@com>
+  Lizeth Arizmendi Zagal    <liz.arizmendi13@gmail.com>
   Gabriel Alarcon Carranza  <galarcon@ccg.unam.mx>
 ]
 
@@ -61,12 +59,13 @@ RegulonDB Team:
 
 ## Component Type 
 
-[hook]
+[Hook]
 
 ## Dependencies
 
 _[react]_ useState
-[description]
+useState is a Hook that allows you to have state variables in functional components. You pass the initial state to this function and it returns a variable with the current state value (not necessarily the initial state) and another function to update this value.
+In this case we use useState for update our array elementData.
 _documentation_
 [React](https://es.reactjs.org/)
 
@@ -81,10 +80,10 @@ _documentation_
 
 # Functions description
 
-## function_name
+## setValues()
 
 __Description:__  
-[this function sends the console a warning that the button does not have a designated action]
+This function sends an array with the positions and elements selected in the form.
 
 __Usage:__
 '''
@@ -100,14 +99,77 @@ __Usage:__
 __Scope: __
  Local
 
-__Input Parameter:__ 
-​__[Type]:__ [Name]
-[Description]
-
 __Return:__
-​__[Type]:__ [Name]
-​[Description (if necessary)]
+​__[object]:__ response
+This object contains the data to be queried in the regulondb database.
 
+## handleChange()
+
+__Description:__  
+This function is used to set a new status for data input.
+
+__Usage:__
+'''
+  onChange={handleChange}
+'''
+
+__Scope: __
+ Local
+
+__Input Parameter:__ 
+​__[event]:__ e
+Is an action that could be triggered as a result of the user action or system generated event.
+
+## resetInput()
+
+__Description:__  
+This function is used to reset the values of each input in the form.
+
+__Usage:__
+'''
+  <button
+    className="accent"
+    style={{ marginRight: "2%", marginLeft: "2%" }}
+    onClick={() => {
+    onReset(true)
+      resetInput()
+    }}
+  >
+  Reset
+  </button>
+
+'''
+
+__Scope: __
+ Local
+
+__Input Parameter:__ 
+​__[event]:__ e
+Is an action that could be triggered as a result of the user action or system generated event.
+
+
+## Demo()
+
+__Description:__  
+This function is used to set values of a demo in the form.
+
+__Usage:__
+'''
+  <button
+    id="demo"
+    onClick={(e) => Demo(e)}
+  > 
+  Demo
+  </button>
+      
+'''
+
+__Scope: __
+ Local
+
+__Input Parameter:__ 
+​__[event]:__ e
+Is an action that could be triggered as a result of the user action or system generated event.
 
 */
 
@@ -163,10 +225,8 @@ export default function Form({
 
   const [elements, setElements] = useState(elementData);
 
-
-
   const handleChange = (e) => {
-    //console.log(typeof(e))
+    console.log(typeof(e))
     const { name, checked } = e.target;
     if (name === "checkAll") {
       let tempElement = elements.map((element) => {
@@ -182,11 +242,21 @@ export default function Form({
   };
 
   const resetInput = (e) => {
-    
     document.getElementById("posL").value = "";
     document.getElementById("posR").value = "";
     document.getElementById("both").checked = true;
+    document.getElementById("covered").checked = true;
     setElements(elementData);
+  };
+  const Demo = (e) => {
+    document.getElementById("posL").value = "2306972";
+    document.getElementById("posR").value = "2311534";
+    document.getElementById("both").checked = true;
+    document.getElementById("covered").checked = true;
+    let tempElement = elements.map((element) => {
+      return { ...element, isChecked: true };
+    });
+    setElements(tempElement);
   };
 
   return (
@@ -239,6 +309,7 @@ export default function Form({
         <input
           type="checkbox"
           name="checkAll"
+          id="checkAll"
           checked={!elements.some((element) => element?.isChecked !== true)}
           onChange={handleChange}
         />
@@ -248,6 +319,7 @@ export default function Form({
         <div key={index}>
           <input
             type="checkbox"
+            id={element.name}
             name={element.name}
             checked={element?.isChecked || false}
             onChange={handleChange}
@@ -270,16 +342,13 @@ export default function Form({
           resetInput()
         }}
       >
-        Reset
+      Reset
       </button>
       <button
         id="demo"
-        onClick={(e) => {
-          document.getElementById("posL").value = "2306972";
-          document.getElementById("posR").value = "2311534";
-        }}
+        onClick={(e) => Demo(e)}
       >
-        Demo
+      Demo
       </button>
     </div>
   );

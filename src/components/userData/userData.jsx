@@ -1,14 +1,12 @@
 /**
 
-# Component (user guide)
+# Component (deployment use)
 
-# [FromUserData]
+# Form (regulonDB dtt)
 	
 ## Description  
 	
-FormUserData is a user interface where the user can 
-load a document to graph the genetic elements contained
-in the document.
+Is a user interface where the user can load a document to graph the genetic elements contained in the document.
 
 ## Category   
 	
@@ -21,9 +19,12 @@ in the document.
 [-]
 
 ## Usage 
-	
-[<FormUserData />]
 
+'''
+  import {UserData} from "./components/userData/userData"
+  //on implement ReactElement
+  <UserData></UserData> 
+'''
 ## Props 
 
 | Attribute | Type | Default | Description |
@@ -43,9 +44,12 @@ MIT License
 ## Author 
 	
 RegulonDB Team: 
-[Lizeth-Ariz]
+[
+  Lizeth Arizmendi Zagal    <liz.arizmendi13@gmail.com>
+  Gabriel Alarcon Carranza  <galarcon@ccg.unam.mx>
+]
 
-# Component (technical guide)
+# Component (development use)
 
 ## Component Type 
 
@@ -59,61 +63,26 @@ RegulonDB Team:
 
 ## Dependencies
 
-[import React, { Component } from "react";]
-[import { Button, TextArea } from "./ui-components/index";]
+import React, { useState } from "react";
+import { Form } from "./form";
+import DttGraphic from "../dttGraphic/DttGraphic";
 
 ## States
 	
-| Property | Value |          Desctiption           |
-| -------- | ----- | -----------------------------  |
-| dataText | String|  Updates state of the textarea |
+| Property    | Value |          Desctiption           |
+| --------    | ----- | -----------------------------  |
+| _dttData    | String|  Updates state of the textarea |
+| _valueText  | String|  Updates state of the textarea |
+
 
 # Functions description
 
-## [handleSubmit]
+## [name]
 
 __Description:__  
 
-[Send the form information with the Go button]
 
 __Usage:__
-
-```javascript
-onClick={this.handleSubmit}
-```
-## [handleInputChange]
-
-__Description:__  
-
-[Updates state of the textarea]
-
-__Usage:__
-
-```javascript
-onChangeText={this.handleInputChange}
-```
-## [handleCatchFile]
-
-__Description:__  
-
-[Loads the demo document and displays it in the textarea with the Demo button]
-
-__Usage:__
-
-```javascript
-onClick={this.handleCatchFile}
-```
-## [handleFileUpload]
-
-__Description:__  
-
-[Upload and validate the user's document with the upload file button]
-
-__Usage:__
-
-```javascript
-onChange={this.handleFileUpload} 
-```
 
 __Scope: __
 
@@ -122,11 +91,8 @@ __Scope: __
 __Input Parameter:__  
 ​__event:__ [Description]
 
-
 __Return:__  
 ​__Void:__ []
-imprime en consola: 
-console.log("final data is", dataText);
 ​[Description (if necessary)]
  * 
  */
