@@ -10,7 +10,7 @@ Is a user interface where the user can load a document to graph the genetic elem
 
 ## Category   
 	
-[Visual]  
+[Estructural]  
 
 ## Live demo 
 [-]
@@ -69,10 +69,10 @@ import DttGraphic from "../dttGraphic/DttGraphic";
 
 ## States
 	
-| Property    | Value |          Desctiption           |
+| Property    | Value |          Description           |
 | --------    | ----- | -----------------------------  |
-| _dttData    | String|  Updates state of the textarea |
-| _valueText  | String|  Updates state of the textarea |
+| _dttData    | String| Contains user data              |
+| _valueText  | String| Contiene el string que se aloja en textarea del form.  |
 
 
 # Functions description
@@ -109,6 +109,7 @@ import { Form } from "./form";
 export function UserData() {
   const [_dttData, set_dttData] = useState();
   const [_valueText, set_valueText] = useState("");
+  console.log(_dttData)
   return (
     <div>
       <Form
