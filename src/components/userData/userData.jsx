@@ -62,17 +62,17 @@ RegulonDB Team:
   Hook -> exporta hook (react const) ]
 
 ## Dependencies
-
+'''
 import React, { useState } from "react";
 import { Form } from "./form";
 import DttGraphic from "../dttGraphic/DttGraphic";
-
+'''
 ## States
 	
-| Property    | Value |          Description           |
-| --------    | ----- | -----------------------------  |
-| _dttData    | String| Contains user data              |
-| _valueText  | String| Contiene el string que se aloja en textarea del form.  |
+| Property    | Value |                              Description                         |
+| --------    | ----- | ---------------------------------------------------------------  |
+| _dttData    | String| Contains user data                                               |
+| _valueText  | String| Contains the string that is placed in the textarea of the form.  |
 
 
 # Functions description
@@ -89,11 +89,11 @@ __Scope: __
 [Scope details]
 
 __Input Parameter:__  
-​__event:__ [Description]
+ __event:__ [Description]
 
 __Return:__  
-​__Void:__ []
-​[Description (if necessary)]
+ __Void:__ []
+ [Description (if necessary)]
  * 
  */
 

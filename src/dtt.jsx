@@ -1,61 +1,124 @@
-import React, {useState} from 'react'
+/**
+
+# Component (deployment use)
+
+# dtt
+	
+## Description  
+
+DrawingTracesTool is a user-friendly tool allowing generating images of elements related to DNA and involved in gene regulation (such as gene, operon, binding site, promoter, terminator, attenuator, riboswitch and small RNA).
+
+## Category   
+	
+Visual
+
+## Live demo 
+[-]
+
+## Installation 
+[-]
+
+## Usage 
+
+'''
+
+'''
+## Props 
+
+| Attribute | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+|           |      |         |             |
+
+
+## Exception
+
+__Category: [Error, Warning or Message]__
+[Description of the exception (if necessary)]
+
+## License
+
+MIT License
+
+## Author 
+	
+RegulonDB Team: 
+[
+  Lizeth Arizmendi Zagal    <liz.arizmendi13@gmail.com>
+  Gabriel Alarcon Carranza  <galarcon@ccg.unam.mx>
+]
+
+# Component (development use)
+
+## Component Type 
+
+  [-]
+
+## Dependencies
+
+'''
+
+'''
+
+## States
+	
+| Property    |    Value   |          Description           |
+| --------    | ---------- | -----------------------------  |
+| _formData   |    object  | Form imput data.               |
+| _data       |    object  | Data consulted in regulondb.   |
+
+
+# Functions description
+
+## [name]
+
+__Description:__  
+
+
+__Usage:__
+
+__Scope: __
+
+[Scope details]
+
+__Input Parameter:__  
+ __event:__ [Description]
+
+__Return:__  
+ __Void:__ []
+ [Description (if necessary)]
+ * 
+ */
+
+
+import React, { useState } from 'react'
 import Title from './components/cover/title'
 import { Tabs } from './components/tab/tabs';
-import Form from './components/regulondbData/form';
-import {UserData} from "./components/userData/userData"
-import GetGeneticElements from './webServices/getGenticInterval';
+import { UserData } from "./components/userData/userData"
 import "./styleSheet_regulonDB.css"
-
-
+import { RegulonDBData } from './components/regulondbData/regulondbdata';
 
 const tabsInfo = [
-    { id: "01", name: "RegulonDB-Data", disabled: false },
-    { id: "02", name: "User Data", disabled: false }
-  ];
+  { id: "01", name: "RegulonDB-Data", disabled: false },
+  { id: "02", name: "User Data", disabled: false }
+];
 
-  const tabs = [
-    <div id="01">
-      <RegulonDBData />
-    </div>,
-    <div id="02">
-      <article>
-        <br />
-        <UserData></UserData> 
-      </article>
-    </div>
-  ];
+const tabs = [
+  <div id="01">
+    <RegulonDBData />
+  </div>,
+  <div id="02">
+    <article>
+      <br />
+      <UserData></UserData>
+    </article>
+  </div>
+];
 
 export default function DTT() {
-    return (
-        <div>
-            <Title></Title>
-            <Tabs tabSelect={"01"} tabsInfo={tabsInfo} tabs={tabs} />
-        </div>
-    )
-}
-
-function RegulonDBData(){
-  const [_formData, set_formData] = useState();
-  const [_data, set_data] = useState();
-  console.log(_data)
-  return(
-    <article>
-        <br />
-        <Form onGo={(data)=>{set_formData(data)}} onReset={()=>{set_formData(undefined)}} ></Form>
-        {
-          _formData &&
-          <GetGeneticElements
-          leftEndPosition={_formData.posL}
-          rightEndPosition={_formData.posR}
-          strand={_formData.strand}    
-          covered={_formData.covered}     
-          objectType={_formData.geneticElement} 
-          resoultsData={(data)=>{set_data(data)}}
-        />
-        }
-      </article>
+  return (
+    <div>
+      <Title></Title>
+      <Tabs tabSelect={"01"} tabsInfo={tabsInfo} tabs={tabs} />
+    </div>
   )
 }
-/** <GetGeneticElements
-          leftEndPosition={}
-        /> */

@@ -69,7 +69,7 @@ In this case we use useState for update our array elementData.
 _documentation_
 [React](https://es.reactjs.org/)
 
-​__[Type]:__ [Name]
+ __[Type]:__ [Name]
 [Description]
 
 ## States
@@ -100,7 +100,7 @@ __Scope: __
  Local
 
 __Return:__
-​__[object]:__ response
+ __[object]:__ response
 This object contains the data to be queried in the regulondb database.
 
 ## handleChange()
@@ -117,7 +117,7 @@ __Scope: __
  Local
 
 __Input Parameter:__ 
-​__[event]:__ e
+ __[event]:__ e
 Is an action that could be triggered as a result of the user action or system generated event.
 
 ## resetInput()
@@ -144,7 +144,7 @@ __Scope: __
  Local
 
 __Input Parameter:__ 
-​__[event]:__ e
+ __[event]:__ e
 Is an action that could be triggered as a result of the user action or system generated event.
 
 
@@ -168,7 +168,7 @@ __Scope: __
  Local
 
 __Input Parameter:__ 
-​__[event]:__ e
+ __[event]:__ e
 Is an action that could be triggered as a result of the user action or system generated event.
 
 */
@@ -188,8 +188,8 @@ const elementData = [
 ];
 
 export default function Form({
-  onGo = () => {},
-  onReset = () => {},
+  onGo = () => { },
+  onReset = () => { },
   minbp = 1,
   maxbp = 4639676
 }) {
@@ -226,7 +226,7 @@ export default function Form({
   const [elements, setElements] = useState(elementData);
 
   const handleChange = (e) => {
-    console.log(typeof(e))
+    console.log(typeof (e))
     const { name, checked } = e.target;
     if (name === "checkAll") {
       let tempElement = elements.map((element) => {
@@ -276,9 +276,9 @@ export default function Form({
       <label>Strand:</label>
       <br />
       <fieldset>
-        <input type="radio" name="strand" value="forward" onChange={() => {}} />
+        <input type="radio" name="strand" value="forward" onChange={() => { }} />
         <label>forward</label>
-        <input type="radio" name="strand" value="reverse" onChange={() => {}} />
+        <input type="radio" name="strand" value="reverse" onChange={() => { }} />
         <label>reverse</label>
         <input
           id="both"
@@ -286,7 +286,7 @@ export default function Form({
           name="strand"
           value="both"
           defaultChecked={true}
-          onChange={() => {}}
+          onChange={() => { }}
         />
         <label>both</label>
         <br />
@@ -297,7 +297,7 @@ export default function Form({
         id="covered"
         type="checkbox"
         defaultChecked={true}
-        onChange={() => {}}
+        onChange={() => { }}
       />
       <label>
         (Draw only the elements that are completely contained in the selected
@@ -342,13 +342,13 @@ export default function Form({
           resetInput()
         }}
       >
-      Reset
+        Reset
       </button>
       <button
         id="demo"
         onClick={(e) => Demo(e)}
       >
-      Demo
+        Demo
       </button>
     </div>
   );

@@ -9,6 +9,7 @@ function query(leftEndPosition, rightEndPosition, strand, objectType, covered) {
                   leftEndPosition: ${leftEndPosition}
                   rightEndPosition: ${rightEndPosition}
                   strand: "${strand}"
+                  objectType: ${objectType}
                 covered: ${covered}
                 ) {
               _id
@@ -42,9 +43,9 @@ const GetGeneticElements = ({
     status = () => { },
     resoultsData = () => { },
 }) => {
-
+    //states
     const { data, loading, error } = useQuery(query(leftEndPosition, rightEndPosition, strand, objectType, covered))
-    
+
     useEffect(() => {
         if (loading) {
             status('loading')
@@ -55,27 +56,17 @@ const GetGeneticElements = ({
                 status('done')
             } catch (error) {
                 status('error')
-                console.error("try query: ",error)
+                console.error("try query: ", error)
             }
 
         }
         if (error) {
             status('error')
-            console.error("useQuery: ",error)
+            console.error("useQuery: ", error)
         }
 
     }, [loading, error, status, data, resoultsData])
 
-    if (loading) {
-        return <></>
-    }
-    if (error) {
-        return <></>
-    }
-    try {
-        // Structed data
-    } catch (error) {
-    }
     return (<></>);
 }
 
