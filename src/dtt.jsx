@@ -56,15 +56,19 @@ RegulonDB Team:
 ## Dependencies
 
 '''
-
+import React from 'react'
+import Title from './components/cover/title'
+import { Tabs } from './components/tab/tabs';
+import { UserData } from "./components/userData/userData"
+import "./styleSheet_regulonDB.css"
+import { RegulonDBData } from './components/regulondbData/regulondbdata';
 '''
 
 ## States
 	
 | Property    |    Value   |          Description           |
 | --------    | ---------- | -----------------------------  |
-| _formData   |    object  | Form imput data.               |
-| _data       |    object  | Data consulted in regulondb.   |
+|     -       |      -     |                --              |
 
 
 # Functions description
@@ -90,17 +94,20 @@ __Return:__
  */
 
 
-import React, { useState } from 'react'
+import React from 'react'
 import Title from './components/cover/title'
 import { Tabs } from './components/tab/tabs';
 import { UserData } from "./components/userData/userData"
 import "./styleSheet_regulonDB.css"
 import { RegulonDBData } from './components/regulondbData/regulondbdata';
 
+
 const tabsInfo = [
   { id: "01", name: "RegulonDB-Data", disabled: false },
   { id: "02", name: "User Data", disabled: false }
 ];
+
+
 
 const tabs = [
   <div id="01">

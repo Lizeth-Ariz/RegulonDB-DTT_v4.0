@@ -1,11 +1,106 @@
+/**
+
+# Component (deployment use)
+
+# Form (regulonDB dtt)
+	
+## Description  
+
+FormRegulondbData is a user interface where the user selects the options he prefers in the form to make the graph of genetic elements.
+
+## Category   
+	
+[Estructural]
+
+## Live demo 
+[-]
+
+## Installation 
+[-]
+
+## Usage 
+
+'''
+import { RegulonDBData } from './components/regulondbData/regulondbdata';
+ //on implement ReactElement
+<RegulonDBData />
+'''
+## Props 
+
+| Attribute | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+|           |      |         |             |
+
+
+## Exception
+
+__Category: [Error, Warning or Message]__
+[Description of the exception (if necessary)]
+
+## License
+
+MIT License
+
+## Author 
+	
+RegulonDB Team: 
+[
+  Lizeth Arizmendi Zagal    <liz.arizmendi13@gmail.com>
+  Gabriel Alarcon Carranza  <galarcon@ccg.unam.mx>
+]
+
+# Component (development use)
+
+## Component Type 
+
+  [HOC]
+
+## Dependencies
+'''
 import React, { useState } from 'react'
 import GetGeneticElements from '../../webServices/getGenticInterval';
 import Form from './form';
+'''
+
+## States
+	
+| Property    |    Value   |          Description           |
+| --------    | ---------- | -----------------------------  |
+| _formData   |    object  | Form imput data.               |
+| _data       |    object  | Data consulted in regulondb.   |
+
+
+# Functions description
+
+## [name]
+
+__Description:__  
+
+
+__Usage:__
+
+__Scope: __
+
+[Scope details]
+
+__Input Parameter:__  
+ __event:__ [Description]
+
+__Return:__  
+ __Void:__ []
+ [Description (if necessary)]
+ * 
+ */
+
+import React, { useState } from 'react'
+import GetGeneticElements from '../../webServices/getGenticInterval';
+import Form from './form';
+import ITable from "../intelligentTable/table"
+
 
 export function RegulonDBData() {
     const [_formData, set_formData] = useState();
     const [_data, set_data] = useState();
-    console.log(_data)
     // ['"gene","promoter"']
     let objectType = "["
     if (_formData) {
@@ -15,8 +110,15 @@ export function RegulonDBData() {
         let list = el.map((s) => `"${s}"`).join(", ");
         //console.log(list)
         objectType += list += "]"
+
     }
-    //console.log(objectType)
+    if (_data) {
+        console.log(_data)
+        var dataTable = formatData(_data)
+        console.log(dataTable)
+    }
+
+
     return (
         <article>
             <br />
@@ -32,6 +134,56 @@ export function RegulonDBData() {
                     resoultsData={(data) => { set_data(data) }}
                 />
             }
+
         </article>
     )
 }
+
+function formatData(data) {
+    let key = [];
+    let formatTable = {
+        columns: [],
+        rows: []
+    };
+    for (const property in data[0]) {
+        if (property === "relatedGenes") {
+            delete data[0].relatedGenes;
+        }
+        formatTable.columns.push({
+            name: property,
+            value: property
+        });
+        key.push(property);
+    }
+
+    data.map((ge, index) => {
+        let row = [];
+        for (const property in ge) {
+            if (property === "relatedGenes") {
+                delete ge.relatedGenes;
+            }
+            if (property === "objectRGBColor") {
+                row.push({
+                    data: divColor(ge[property]),
+                    value: property
+                });
+            } else {
+                row.push({
+                    data: ge[property],
+                    value: property
+                });
+            }
+            //console.log(ge[property])
+        }
+        formatTable.rows.push(row);
+        return null;
+    });
+
+    return formatTable;
+}
+
+const divColor = (rgbColor) => {
+    return (
+        <div style={{ height: "20px", backgroundColor: `rgb(${rgbColor})` }}></div>
+    );
+};
