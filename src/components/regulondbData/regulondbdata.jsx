@@ -108,21 +108,24 @@ export function RegulonDBData() {
             return element
         })
         let list = el.map((s) => `"${s}"`).join(", ");
-        //console.log(list)
         objectType += list += "]"
 
     }
+    let dataTable;
     if (_data) {
         console.log(_data)
-        var dataTable = formatData(_data)
-        console.log(dataTable)
+        dataTable = formatData(_data)
+        //console.log(dataTable)
     }
-
 
     return (
         <article>
             <br />
             <Form onGo={(data) => { set_formData(data) }} onReset={() => { set_formData(undefined) }} ></Form>
+            {
+                dataTable &&
+                <ITable dataTable={dataTable}></ITable>
+            }
             {
                 _formData &&
                 <GetGeneticElements
@@ -146,33 +149,34 @@ function formatData(data) {
         rows: []
     };
     for (const property in data[0]) {
-        if (property === "relatedGenes") {
-            delete data[0].relatedGenes;
+        if (property !== "relatedGenes" && property !== "linkedObjectWhenNoPositions" && property !== "__typename" && property !== "tooltip") {
+            formatTable.columns.push({
+                name: property,
+                value: property
+            });
+            key.push(property);
         }
-        formatTable.columns.push({
-            name: property,
-            value: property
-        });
-        key.push(property);
+
     }
 
     data.map((ge, index) => {
         let row = [];
         for (const property in ge) {
-            if (property === "relatedGenes") {
-                delete ge.relatedGenes;
+            if (property !== "relatedGenes" && property !== "linkedObjectWhenNoPositions" && property !== "__typename" && property !== "tooltip") {
+
+                if (property === "objectRGBColor") {
+                    row.push({
+                        data: divColor(ge[property]),
+                        value: property
+                    });
+                } else {
+                    row.push({
+                        data: ge[property],
+                        value: property
+                    });
+                }
             }
-            if (property === "objectRGBColor") {
-                row.push({
-                    data: divColor(ge[property]),
-                    value: property
-                });
-            } else {
-                row.push({
-                    data: ge[property],
-                    value: property
-                });
-            }
+
             //console.log(ge[property])
         }
         formatTable.rows.push(row);
