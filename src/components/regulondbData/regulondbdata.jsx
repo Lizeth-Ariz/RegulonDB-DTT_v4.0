@@ -122,7 +122,13 @@ export function RegulonDBData() {
     return (
         <article>
             <br />
-            <Form onGo={(data) => { set_formData(data) }} onReset={() => { set_formData(undefined) }} ></Form>
+            <Form
+                onGo={(data) => { set_formData(data) }}
+                onReset={(_formData, _data) => {
+                    set_formData("")
+                    set_data("")
+                }} >
+            </Form>
             {
                 dataTable &&
                 <div>
