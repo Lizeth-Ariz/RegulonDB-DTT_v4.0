@@ -96,6 +96,7 @@ import React, { useState } from 'react'
 import GetGeneticElements from '../../webServices/getGenticInterval';
 import Form from './form';
 import ITable from "../intelligentTable/table"
+import DttTool from '../dtt_tool/dttTool';
 
 
 export function RegulonDBData() {
@@ -124,7 +125,10 @@ export function RegulonDBData() {
             <Form onGo={(data) => { set_formData(data) }} onReset={() => { set_formData(undefined) }} ></Form>
             {
                 dataTable &&
-                <ITable dataTable={dataTable}></ITable>
+                <div>
+                    <ITable dataTable={dataTable}></ITable>
+                    <DttTool data_dtt={_data} />
+                </div>
             }
             {
                 _formData &&
