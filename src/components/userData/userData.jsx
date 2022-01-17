@@ -99,6 +99,7 @@ __Return:__
 
 import React, { useState } from "react";
 import { Form } from "./form";
+import DttTool from '../dtt_tool/dttTool';
 /*import DttGraphic from "../dttGraphic/DttGraphic";
 {_dttData ? (
   <DttGraphic id_canvas={"0120"} dnaFeatures_data={_dttData} />
@@ -123,6 +124,7 @@ export function UserData() {
           set_dttData();
         }}
       />
+      <DttTool data_dtt={_dttData} />
     </div>
   );
 }
