@@ -123,7 +123,7 @@ export function RegulonDBData() {
 
     return (
         <article>
-            <br />
+            &nbsp;
             <Form
                 onGo={(data) => { set_formData(data) }}
                 onReset={(_formData, _data) => {
@@ -131,10 +131,12 @@ export function RegulonDBData() {
                     set_data("")
                 }} >
             </Form>
+            &nbsp;
             {
                 dataTable &&
                 <div>
                     <ITable dataTable={dataTable}></ITable>
+                    &nbsp;
                     <DttTool data_dtt={_data} />
                 </div>
             }

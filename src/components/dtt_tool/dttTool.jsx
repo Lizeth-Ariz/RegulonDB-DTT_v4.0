@@ -37,7 +37,27 @@ const DttTool = ({
             svg.style.transform = getTransformString(scale + dScale, x, y);
         }
     };
-
+    const pan = (direction) => {
+        const svg = document.getElementById("dttv4_Canvaversion4");
+        const { scale, x, y } = getTransformParameters(svg);
+        let dx = 0,
+            dy = 0;
+        switch (direction) {
+            case "left":
+                dx = -3;
+                break;
+            case "right":
+                dx = 3;
+                break;
+            default:
+            ///
+        }
+        svg.style.transform = getTransformString(scale, x + dx, y + dy);
+    };
+    const _resetZoom = () => {
+        const svg = document.getElementById("dttv4_Canvaversion4");
+        svg.style.transform = getTransformString(1, 0, 0);
+    }
 
     const _downloadPNG = () => {
         var svgElement = document.querySelector(`svg`);
@@ -84,58 +104,78 @@ const DttTool = ({
     if (data_dtt) {
         return (
             <section>
-                <div>
-                    <IconButton
-                        icon="add"
-                        style={{
-                            background: "#000",
-                            float: "left",
-                            marginRight: "1%"
-                        }}
-                        onClick={() => {
-                            _onZoom("in");
-                        }}
-                    />
-                    <IconButton
-                        icon="remove"
-                        style={{
-                            background: "#000",
-                            float: "left",
-                            marginRight: "1%"
-                        }}
-                        onClick={() => {
-                            _onZoom("out");
-                        }}
-                    />
-                    <IconButton
-                        icon="crop_free"
-                        style={{
-                            background: "#000",
-                            float: "left",
-                            marginRight: "1%"
-                        }}
-                        onClick={() => {
 
-                        }}
-                    />
-                    <div class="dropdown">
-                        <button>Download</button>
-                        <div class="dropdown-content">
-                            <button
-                                style={{ background: "#72a7c7" }}
-                                onClick={() => {
-                                    _downloadPNG();
-                                }}
-                            >Download PNG</button>
-                            <button
-                                style={{ background: "#72a7c7" }}
-                                onClick={() => {
-                                    _downloadSVG();
-                                }}
-                            >Download SVG</button>
-                        </div>
+                <IconButton
+                    icon="add"
+                    style={{
+                        background: "#000",
+                        float: "left",
+                        marginRight: "1%"
+                    }}
+                    onClick={() => {
+                        _onZoom("in");
+                    }}
+                />
+                <IconButton
+                    icon="remove"
+                    style={{
+                        background: "#000",
+                        float: "left",
+                        marginRight: "1%"
+                    }}
+                    onClick={() => {
+                        _onZoom("out");
+                    }}
+                />
+                <IconButton
+                    icon="keyboard_arrow_left"
+                    style={{
+                        background: "#000",
+                        float: "left",
+                        marginRight: "1%"
+                    }}
+                    onClick={() => {
+                        pan("right");
+                    }}
+                />
+                <IconButton
+                    icon="keyboard_arrow_right"
+                    style={{
+                        background: "#000",
+                        float: "left",
+                        marginRight: "1%"
+                    }}
+                    onClick={() => {
+                        pan("left");
+                    }}
+                />
+                <IconButton
+                    icon="restart_alt"
+                    style={{
+                        background: "#000",
+                        float: "left",
+                        marginRight: "1%"
+                    }}
+                    onClick={() => {
+                        _resetZoom();
+                    }}
+                />
+                <div className="dropdown">
+                    <button>Download</button>
+                    <div className="dropdown-content">
+                        <button
+                            style={{ background: "#72a7c7" }}
+                            onClick={() => {
+                                _downloadPNG();
+                            }}
+                        >Download PNG</button>
+                        <button
+                            style={{ background: "#72a7c7" }}
+                            onClick={() => {
+                                _downloadSVG();
+                            }}
+                        >Download SVG</button>
                     </div>
-
                 </div>
                 <div style={{ overflow: "auto", height: "200px", resize: "vertical" }} id={`divCanvas_dttv4Context${id}`}></div>
             </section>
