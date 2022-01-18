@@ -100,13 +100,7 @@ __Return:__
 import React, { useState } from "react";
 import { Form } from "./form";
 import DttTool from '../dtt_tool/dttTool';
-/*import DttGraphic from "../dttGraphic/DttGraphic";
-{_dttData ? (
-  <DttGraphic id_canvas={"0120"} dnaFeatures_data={_dttData} />
-) : (
-  <></>
-)}
-*/
+
 export function UserData() {
   const [_dttData, set_dttData] = useState();
   const [_valueText, set_valueText] = useState("");

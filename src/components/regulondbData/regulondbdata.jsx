@@ -60,6 +60,8 @@ RegulonDB Team:
 import React, { useState } from 'react'
 import GetGeneticElements from '../../webServices/getGenticInterval';
 import Form from './form';
+import ITable from "../intelligentTable/table"
+import DttTool from '../dtt_tool/dttTool';
 '''
 
 ## States

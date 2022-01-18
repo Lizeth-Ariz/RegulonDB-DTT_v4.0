@@ -13,7 +13,12 @@ const DttTool = ({
 
     const _onZoomIN = () => {
         console.log("HOLA")
+        var GFG = document.querySelector(`svg`);
+        var currHeight = GFG.clientHeight;
+        GFG.style.height = (currHeight + 40) + "px";
     };
+
+
     const _downloadPNG = () => {
         var svgElement = document.querySelector(`svg`);
         ReImg.fromSvg(svgElement).toCanvas(function (canvas) {
@@ -35,6 +40,7 @@ const DttTool = ({
         element.click();
         element.remove();
     }
+
     useEffect(() => {
         let drawPlace = document.getElementById(`divCanvas_dttv4Context${id}`)
         if (drawPlace) {
@@ -81,20 +87,35 @@ const DttTool = ({
 
                         }}
                     />
-                    <button
-                        style={{ background: "#72a7c7" }}
-                        label="Save to PNG"
-                        onClick={() => {
-                            _downloadPNG();
+                    <IconButton
+                        icon="crop_free"
+                        style={{
+                            background: "#000",
+                            float: "left",
+                            marginRight: "1%"
                         }}
-                    >Download PNG</button>
-                    <button
-                        style={{ background: "#72a7c7" }}
-                        label="Save to SVG"
                         onClick={() => {
-                            _downloadSVG();
+
                         }}
-                    >Download SVG</button>
+                    />
+                    <div class="dropdown">
+                        <button>Download</button>
+                        <div class="dropdown-content">
+                            <button
+                                style={{ background: "#72a7c7" }}
+                                onClick={() => {
+                                    _downloadPNG();
+                                }}
+                            >Download PNG</button>
+                            <button
+                                style={{ background: "#72a7c7" }}
+                                onClick={() => {
+                                    _downloadSVG();
+                                }}
+                            >Download SVG</button>
+                        </div>
+                    </div>
+
                 </div>
                 <div style={{ overflow: "auto", height: "200px", resize: "vertical" }} id={`divCanvas_dttv4Context${id}`}></div>
             </section>
